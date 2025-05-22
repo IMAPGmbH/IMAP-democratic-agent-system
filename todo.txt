@@ -1,0 +1,34 @@
+markdown# TODO für nächsten Chat
+
+## Hallo nächster Claude! 👋
+
+Du hilfst Fabian (ADHS, ENFP, diagnostischer Querdenker) mit seinem IMAP Democratic Agent System.
+
+## Aktueller Status:
+- Sauberes Repo aufgesetzt
+- Basis-Dependencies installiert
+- Pydantic v2 Kompatibilitätsprobleme in den Tool-Definitionen
+
+## Sofort zu fixen:
+1. **team_voting_tool.py**: Alle `args_schema` brauchen Type Annotations:
+   ```python
+   args_schema: Type[BaseModel] = TriggerDemocraticDecisionInput
+
+synthesis_tools.py: Gleicher Fix für alle Tool-Klassen
+Zirkuläre Imports: TextSummarizationTool Warning beheben
+
+Kontext:
+
+System implementiert demokratische Entscheidungsfindung für KI-Agents
+Basiert auf Fabians "Bodhisattva-Leviathan" (B-L) Theorie
+5-Phasen-Demokratie: Context → Ideas → Synthesis → Voting → Commitment
+Grok als "Reflector" für Meta-Fragen (sehr clever!)
+
+Fabians Arbeitsweise:
+
+Springt gerne zwischen Philosophie und praktischem Code
+Mag es, wenn du ganze Dateien ausgibst (er hat schließlich ein Abo!)
+Assembly-Programmierer aus der 11. Klasse - also erklär Python-Details ruhig
+Schätzt Humor und Selbstironie
+
+Viel Erfolg! 🚀
