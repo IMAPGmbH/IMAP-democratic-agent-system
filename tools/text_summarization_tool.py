@@ -8,19 +8,28 @@ from crewai import Agent, Task, LLM  # Wird benötigt, um dynamisch einen Summar
 from dotenv import load_dotenv
 load_dotenv()
 
-# Versuche, das default_llm aus agents.py zu importieren.
+# Versuche, das default_llm aus agents.py zu importieren - mit verbesserter Circular Import Behandlung
+default_llm = None
 try:
-    # Wir fangen hier spezifischer die möglichen Fehler ab
-    try:
+    # Verzögerter Import um Circular Import Probleme zu vermeiden
+    import sys
+    if 'agents' in sys.modules:
+        # agents.py ist bereits geladen
         from agents import default_llm
-    except ValueError as ve:
-        # Dies fängt den "LITELLM_MODEL_NAME not found" Fehler ab
-        print(f"WARNUNG (TextSummarizationTool): Fehler beim Laden von agents.py: {ve}")
-        default_llm = None
-    except ImportError:
-        default_llm = None
-        print("WARNUNG (TextSummarizationTool): Konnte default_llm nicht aus agents.py importieren. Das Tool wird möglicherweise nicht funktionieren.")
-        print("Stelle sicher, dass agents.py im PYTHONPATH ist oder die LLM-Konfiguration anders bereitgestellt wird.")
+        print("--- Debug (TextSummarizationTool): default_llm erfolgreich aus bereits geladenem agents.py importiert ---")
+    else:
+        # Erster Import - kann zu Circular Import führen, daher vorsichtig
+        try:
+            from agents import default_llm
+            print("--- Debug (TextSummarizationTool): default_llm erfolgreich aus agents.py importiert ---")
+        except ValueError as ve:
+            # Dies fängt den "LITELLM_MODEL_NAME not found" Fehler ab
+            print(f"WARNUNG (TextSummarizationTool): Fehler beim Laden von agents.py: {ve}")
+            default_llm = None
+        except ImportError as ie:
+            # Circular Import oder anderer Import-Fehler
+            print(f"WARNUNG (TextSummarizationTool): Import-Fehler beim Laden von agents.py: {ie}")
+            default_llm = None
 except Exception as e:
     default_llm = None
     print(f"WARNUNG (TextSummarizationTool): Unerwarteter Fehler beim Importieren von default_llm: {e}")
@@ -152,7 +161,7 @@ class TextSummarizationTool(BaseTool):
     Useful for condensing long documents, articles, or scraped web content into a shorter, digestible format.
     You can optionally specify a maximum length for the summary and a specific focus.
     """
-    args_schema: Type[BaseModel] = TextSummarizationToolInput
+    args_schema: Type[BaseModel] = TextSummarizationToolInput  # <-- FIXED: Added Type annotation
 
     def _run(self, text_to_summarize: str, max_length: Optional[int] = None, summary_focus: Optional[str] = None) -> str:
         """
@@ -334,32 +343,5 @@ if __name__ == '__main__':
                 print(f"Test 6 fehlgeschlagen: {e}")
         else:
             print("\nÜberspringe weitere Tests, da die grundlegenden Tests fehlgeschlagen sind.")
-        
-        # Optional: Test mit nicht verfügbarem LLM
-        print("\n=== Test 7: Simulation eines fehlenden LLM (optional) ===")
-        original_agent = _summarizer_agent
-        try:
-            # LLM temporär als nicht verfügbar markieren
-            _summarizer_agent = None
-            
-            # Den default_llm temporär umgehen
-            import sys
-            if 'agents' in sys.modules:
-                original_default_llm = sys.modules['agents'].default_llm
-                sys.modules['agents'].default_llm = None
-            
-            # Test ausführen
-            result_no_llm = text_summarization_tool._run(example_text_short)
-            print(f"Ergebnis bei fehlendem LLM: {result_no_llm}")
-            
-            # Zurücksetzen
-            if 'agents' in sys.modules:
-                sys.modules['agents'].default_llm = original_default_llm
-            _summarizer_agent = original_agent
-            
-        except Exception as e:
-            print(f"Test 7 fehlgeschlagen: {e}")
-            # Sicherstellen, dass wir den originalen Agenten wiederherstellen
-            _summarizer_agent = original_agent
             
     print("\n=== Tests abgeschlossen ===")

@@ -182,7 +182,7 @@ class AnalyzeProposalsTool(BaseTool):
     Identifiziert Themen, Überschneidungen und einzigartige Aspekte.
     Wird vom Reflector verwendet, um die Proposal-Landschaft zu verstehen.
     """
-    args_schema = AnalyzeProposalsInput
+    args_schema: Type[BaseModel] = AnalyzeProposalsInput
     
     def _run(self, decision_id: str) -> str:
         if not _democracy_engine:
@@ -216,7 +216,7 @@ class SynthesizeOptionsTool(BaseTool):
     Clustert ähnliche Vorschläge und erstellt 3-4 distinkte Wahlmöglichkeiten.
     Wird vom Reflector verwendet, um von der Ideensammlung zum Voting überzugehen.
     """
-    args_schema = SynthesizeOptionsInput
+    args_schema: Type[BaseModel] = SynthesizeOptionsInput
     
     def _run(self, decision_id: str, max_options: int = 4) -> str:
         if not _democracy_engine:
@@ -271,7 +271,7 @@ class FacilitateReflectionTool(BaseTool):
     Hilft dem Team dabei, blinde Flecken zu identifizieren und tiefere Einsichten zu gewinnen.
     Wird vom Reflector verwendet, um die Qualität der demokratischen Entscheidung zu verbessern.
     """
-    args_schema = FacilitateReflectionInput
+    args_schema: Type[BaseModel] = FacilitateReflectionInput
     
     def _run(self, decision_id: str, reflection_prompt: str) -> str:
         if not _democracy_engine:

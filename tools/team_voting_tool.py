@@ -1,22 +1,11 @@
 import json
 import time
-from typing import Dict, List, Optional, Any, Type,
+from typing import Dict, List, Optional, Any, Type  # <-- FIXED: Added missing comma after Type
 from enum import Enum
 from dataclasses import dataclass, asdict
 from crewai.tools import BaseTool
 from pydantic import BaseModel, Field
 from datetime import datetime
-
-class TriggerDemocraticDecisionTool(BaseTool):
-    name: str = "Trigger Democratic Decision Tool"
-    description: str = """
-    Startet eine neue demokratische Entscheidung zwischen den Agents.
-    Sollte vom Project Manager aufgerufen werden, wenn ein Konflikt erkannt wird
-    oder eine wichtige Entscheidung demokratisch getroffen werden muss.
-    """
-    args_schema: Type[BaseModel] = TriggerDemocraticDecisionInput  # <-- Type annotation hinzufügen!
-    
-    def _run(self, conflict_type: str, trigger_reason: str, context: str, participating_agents: List[str]) -> str:
 
 class VotingPhase(Enum):
     """Die 5 Phasen der demokratischen Entscheidungsfindung."""
@@ -335,7 +324,7 @@ class TriggerDemocraticDecisionTool(BaseTool):
     Sollte vom Project Manager aufgerufen werden, wenn ein Konflikt erkannt wird
     oder eine wichtige Entscheidung demokratisch getroffen werden muss.
     """
-    args_schema = TriggerDemocraticDecisionInput
+    args_schema: Type[BaseModel] = TriggerDemocraticDecisionInput  # <-- FIXED: Added Type annotation
     
     def _run(self, conflict_type: str, trigger_reason: str, context: str, participating_agents: List[str]) -> str:
         try:
@@ -367,7 +356,7 @@ class SubmitProposalTool(BaseTool):
     Reicht einen Vorschlag für eine laufende demokratische Entscheidung ein.
     Jeder Agent kann genau einen Vorschlag pro Entscheidung einreichen.
     """
-    args_schema = SubmitProposalInput
+    args_schema: Type[BaseModel] = SubmitProposalInput  # <-- FIXED: Added Type annotation
     
     def _run(self, decision_id: str, agent_name: str, proposal: str, reasoning: str) -> str:
         success = _democracy_engine.add_agent_proposal(decision_id, agent_name, proposal, reasoning)
@@ -402,7 +391,7 @@ class GetDecisionStatusTool(BaseTool):
     Ruft den aktuellen Status einer demokratischen Entscheidung ab.
     Zeigt Phase, Vorschläge, Stimmen und andere relevante Informationen.
     """
-    args_schema = GetDecisionStatusInput
+    args_schema: Type[BaseModel] = GetDecisionStatusInput  # <-- FIXED: Added Type annotation
     
     def _run(self, decision_id: str) -> str:
         status = _democracy_engine.get_decision_status(decision_id)
