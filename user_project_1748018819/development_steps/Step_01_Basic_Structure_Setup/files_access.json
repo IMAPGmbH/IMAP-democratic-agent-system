@@ -1,0 +1,20 @@
+{
+  "step_number": 1,
+  "step_name": "Basic Structure Setup",
+  "agent_access": {
+    "Developer": [
+      "*.html",
+      "*.css",
+      "*.js"
+    ],
+    "Debugger": [
+      "*.html",
+      "*.css",
+      "*.js"
+    ]
+  },
+  "shared_files": [
+    "user_project_1748018819\\development_steps\\Step_01_Basic_Structure_Setup\\plan.md",
+    "user_project_1748018819\\development_steps\\Step_01_Basic_Structure_Setup\\README.md"
+  ]
+}

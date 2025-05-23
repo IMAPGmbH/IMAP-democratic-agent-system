@@ -58,59 +58,56 @@ from tools.synthesis_tools import (
 load_dotenv()
 
 # === MULTI-LLM CONFIGURATION ===
-# Each AI gets their authentic model assignment
+# GETESTETE und FUNKTIONIERENDE Modelle
 
-# Gemini 2.5 Pro for Project Manager
+# Gemini 2.5 Pro für Project Manager
 gemini_pro_llm = LLM(
-   model="gemini/gemini-2.5-pro",
-   api_key=os.getenv("GEMINI_API_KEY"),
-   temperature=0.7,
-   max_tokens=4096
+    model="gemini/gemini-2.5-pro-preview-05-06",  # ✅ FUNKTIONIERT
+    api_key=os.getenv("GEMINI_API_KEY"),
+    temperature=0.7,
+    max_tokens=4096
 )
 
-# Claude 4 Sonnet for Developer
-# HINWEIS: Bitte den exakten Modell-Identifier für Claude 4 Sonnet prüfen, sobald er von Anthropic final bekannt gegeben wurde.
-# Der Identifier "claude-4-sonnet" ist hier ein Platzhalter basierend auf deiner Information.
+# Claude Sonnet 4 für Developer  
 claude_sonnet_llm = LLM(
-   model="claude-4-sonnet",  # ANPASSUNG: Für Claude 4 Sonnet
-   api_key=os.getenv("ANTHROPIC_API_KEY"),
-   temperature=0.3,
-   max_tokens=4096
+    model="claude-sonnet-4-20250514",  # ✅ FUNKTIONIERT
+    api_key=os.getenv("ANTHROPIC_API_KEY"),
+    temperature=0.3,
+    max_tokens=4096
 )
 
-# Gemini 1.5 Flash for Researcher
+# Gemini 1.5 Flash für Researcher
 gemini_flash_llm = LLM(
-   model="gemini/gemini-1.5-flash",
-   api_key=os.getenv("GEMINI_API_KEY"),
-   temperature=0.5,
-   max_tokens=2048
+    model="gemini/gemini-1.5-flash",  # ✅ FUNKTIONIERT
+    api_key=os.getenv("GEMINI_API_KEY"),
+    temperature=0.5,
+    max_tokens=2048
 )
 
-# Mistral Medium for Tester
+# Mistral Medium für Tester
 mistral_medium_llm = LLM(
-   model="mistral-medium-latest",
-   api_key=os.getenv("MISTRAL_API_KEY"),
-   temperature=0.4,
-   max_tokens=2048
+    model="mistral/mistral-medium-latest",  # ✅ FUNKTIONIERT  
+    api_key=os.getenv("MISTRAL_API_KEY"),
+    temperature=0.4,
+    max_tokens=2048
 )
 
-# Codestral for Debugger
+# Codestral für Debugger
 codestral_llm = LLM(
-   model="codestral-latest",
-   api_key=os.getenv("MISTRAL_API_KEY"),
-   temperature=0.2,
-   max_tokens=3072
+    model="mistral/codestral-latest",  # ✅ FUNKTIONIERT
+    api_key=os.getenv("MISTRAL_API_KEY"),
+    temperature=0.2,
+    max_tokens=3072
 )
 
-# Grok 3 for Reflector
-# HINWEIS: Bitte den exakten Modell-Identifier für Grok 3 prüfen, sobald er von xAI final bekannt gegeben wurde.
-# Der Identifier "grok-3" ist hier ein Platzhalter basierend auf deiner Information.
+# Grok 3 für Reflector
 grok_llm = LLM(
-   model="grok-3",  # ANPASSUNG: Für Grok 3
-   api_key=os.getenv("XAI_API_KEY"),
-   temperature=0.8,
-   max_tokens=2048
+    model="xai/grok-3-latest",  # ✅ FUNKTIONIERT
+    api_key=os.getenv("XAI_API_KEY"),
+    temperature=0.8,
+    max_tokens=2048
 )
+
 
 print("--- Initializing Multi-LLM Democratic Agent System ---")
 print(f"Gemini API configured: {bool(os.getenv('GEMINI_API_KEY'))}")

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modern responsive web application">
+    <title>Modern Web App</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav__container">
+                <div class="nav__brand">
+                    <h1 class="nav__logo">ModernApp</h1>
+                </div>
+                <ul class="nav__menu">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link nav__link--active">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#features" class="nav__link">Features</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link">About</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link">Contact</a>
+                    </li>
+                </ul>
+                <button class="nav__toggle" aria-label="Toggle navigation">
+                    <span class="nav__toggle-line"></span>
+                    <span class="nav__toggle-line"></span>
+                    <span class="nav__toggle-line"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero__content">
+                    <h1 class="hero__title">Welcome to the Future</h1>
+                    <p class="hero__subtitle">Experience modern web development with clean design and responsive functionality</p>
+                    <div class="hero__actions">
+                        <button class="btn btn--primary">Get Started</button>
+                        <button class="btn btn--secondary">Learn More</button>
+                    </div>
+                </div>
+                <div class="hero__visual">
+                    <div class="hero__placeholder">
+                        <div class="placeholder-content">
+                            <div class="placeholder-icon">🚀</div>
+                            <p>Visual Content</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Key Features</h2>
+                    <p class="section-subtitle">Discover what makes our application special</p>
+                </div>
+                <div class="features__grid">
+                    <div class="feature-card">
+                        <div class="feature-card__icon">📱</div>
+                        <h3 class="feature-card__title">Responsive Design</h3>
+                        <p class="feature-card__description">Perfectly optimized for all devices and screen sizes</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card__icon">⚡</div>
+                        <h3 class="feature-card__title">Fast Performance</h3>
+                        <p class="feature-card__description">Lightning-fast loading times and smooth interactions</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card__icon">🎨</div>
+                        <h3 class="feature-card__title">Modern UI</h3>
+                        <p class="feature-card__description">Clean, intuitive interface following latest design trends</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about__content">
+                    <div class="about__text">
+                        <h2 class="section-title">About Our Project</h2>
+                        <p class="about__description">
+                            This project demonstrates modern web development practices with a focus on 
+                            clean code, responsive design, and user experience. Built with semantic HTML, 
+                            modern CSS techniques, and accessibility in mind.
+                        </p>
+                        <ul class="about__features">
+                            <li>✓ Semantic HTML5 structure</li>
+                            <li>✓ CSS Grid and Flexbox layouts</li>
+                            <li>✓ Mobile-first responsive design</li>
+                            <li>✓ Accessibility best practices</li>
+                        </ul>
+                    </div>
+                    <div class="about__visual">
+                        <div class="about__placeholder">
+                            <div class="placeholder-content">
+                                <div class="placeholder-icon">💡</div>
+                                <p>Innovation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__section">
+                    <h3 class="footer__title">ModernApp</h3>
+                    <p class="footer__description">Building the future of web applications</p>
+                </div>
+                <div class="footer__section">
+                    <h4 class="footer__heading">Quick Links</h4>
+                    <ul class="footer__links">
+                        <li><a href="#home" class="footer__link">Home</a></li>
+                        <li><a href="#features" class="footer__link">Features</a></li>
+                        <li><a href="#about" class="footer__link">About</a></li>
+                        <li><a href="#contact" class="footer__link">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer__section">
+                    <h4 class="footer__heading">Connect</h4>
+                    <div class="footer__social">
+                        <a href="#" class="footer__social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="footer__social-link" aria-label="GitHub">🐙</a>
+                        <a href="#" class="footer__social-link" aria-label="LinkedIn">💼</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__copyright">&copy; 2024 ModernApp. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>

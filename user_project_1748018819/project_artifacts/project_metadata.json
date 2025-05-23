@@ -1,0 +1,19 @@
+{
+  "project_id": "imap_project_1748018819",
+  "start_time": "2025-05-23T18:46:59.933625",
+  "budget_euros": 10.0,
+  "used_budget": 0.0,
+  "current_step": 0,
+  "total_steps": 0,
+  "status": "failed",
+  "decisions_made": [
+    {
+      "chosen_framework": "React with TypeScript",
+      "reasoning": "Team consensus based on familiarity and tooling",
+      "vote_results": "Detailed voting results would be here",
+      "commitment_level": "High - all agents committed to the decision"
+    }
+  ],
+  "development_steps": [],
+  "error": "litellm.RateLimitError: AnthropicException - {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"This request would exceed the rate limit for your organization (3ce55b72-e5d7-4bf9-a7b8-b134f3711a2c) of 20,000 input tokens per minute. For details, refer to: https://docs.anthropic.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://www.anthropic.com/contact-sales to discuss your options for a rate limit increase.\"}}"
+}
