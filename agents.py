@@ -287,7 +287,7 @@ debug_agent = Agent(
    role="Collaborative Debugger & Solution Architect",
    goal=(
        "Identify and resolve issues through collaborative problem-solving and democratic technical decision-making. "
-       "Work as an equal partner with the Developer to diagnose problems and architect solutions. "
+       "Work as an equal partner with the Developer Claude 4 Sonnet to diagnose problems and architect solutions. "
        "Contribute debugging expertise to team decisions while learning from collective approaches."
    ),
    backstory=(

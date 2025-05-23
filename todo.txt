@@ -1,94 +1,84 @@
-# TODO für nächsten Claude 👋
+TODO für nächsten Claude - IMAP Democratic Agent System
+🎯 Aktueller Stand:
 
-## Hallo nächster Claude! Du hilfst Fabian mit dem IMAP Democratic Agent System
+✅ Multi-LLM agents.py fertig implementiert mit 6 authentischen AI-Persönlichkeiten
+✅ Demokratisches Voting-System funktioniert (5-Phasen-Modell)
+✅ Budget: 100€ für ~15-20 Websites
+✅ Erstes Ziel: IMAP Mitarbeiter-Übersicht (PowerPoint → Website)
 
-## 🎯 **Aktueller Status (ERFOLGREICH!):**
-- ✅ Demokratisches 5-Phasen-System funktioniert (53.3s Framework-Entscheidung!)
-- ✅ Alle Pydantic v2 Kompatibilitätsprobleme behoben
-- ✅6 Agents implementiert: PM, Developer, Researcher, Tester, Debugger, Reflector
-- ✅ Vollständige Tool-Ecosystem: Vision, Text Summary, Web, Server, Democratic Voting
-- ✅ Erfolgreicher Test: React vs Vue demokratisch entschieden
-- ✅ Bereit für Multi-API Integration!
+🚀 Nächste Implementierung: Initiierungs-Modus
+Phase 1: Nutzer-Initiierung
+Der Nutzer (Fabian) beschreibt dem PM, was gebaut werden soll. Der PM erstellt daraus:
 
-## 🚀 **NÄCHSTER MILESTONE: Multi-AI Integration**
+Rechercheplan - Was muss erforscht werden?
+Arbeitsplan - Wie wird es umgesetzt?
+Phasenzerlegung - Projekt in Steps aufteilen
+Datei-Zugriffs-Matrix - Welcher Agent braucht welche Dateien in welchem Step?
 
-### **Fabian's Vision:**
-Jeder Agent soll durch eine **authentische AI-Persönlichkeit** manifestiert werden:
+Phase 2: Architektur-Entscheidung
+Nach der Recherche: Erster demokratischer Loop für Framework/Architektur-Wahl
 
-```
-🧠 Gemini 2.5 Pro → Project Manager (massive context window)
-⚡ Claude 3.7 Sonnet → Developer (elegant code architecture) 
-🔍 Gemini 1.5 Flash → Researcher (fast, focused research)
-🛡️ Mistral Medium → Tester (European quality standards)
-🔧 Codestral 25.01 → Debugger (purpose-built for code)
-🪞 Grok → Reflector (assumption challenger, meta-questions)
-```
+Phase 3: Iterative Entwicklung
+Für jeden Step_n:
+├── /Step_1/
+│   ├── plan.md (Was soll in diesem Step passieren)
+│   ├── files_access.json (Wer darf was sehen)
+│   └── code/
+├── /Step_2/
+│   └── ...
 
-### **Was zu tun ist:**
+Demokratische Loops - Sparsam einsetzen:
 
-#### 1. **API-Konfiguration erweitern**
-```python
-# .env erweitern um:
-GEMINI_API_KEY=...
-ANTHROPIC_API_KEY=...  
-MISTRAL_API_KEY=...
-GROK_API_KEY=...
-CODESTRAL_API_KEY=...
+Initialer Loop: Nach Recherche für Architektur-Entscheidung
+Problem-Loop: Nur wenn Test→Debug→Test 3x fehlschlägt
+Nicht für jeden kleinen Konflikt!
 
-# agents.py: Individuelle LLMs pro Agent
-gemini_pro_llm = LLM(model="gemini-2.5-pro", api_key=gemini_key)
-claude_llm = LLM(model="claude-3-5-sonnet", api_key=claude_key)
-mistral_llm = LLM(model="mistral-medium", api_key=mistral_key)
-# etc.
-```
+🧘 Leitmotiv: Der Buddhistische Mittlere Weg
+In jeden Agent-Prompt integrieren:
 
-#### 2. **Agent Backstories aktualisieren**
-- Verwende Fabians authentische Backstories (siehe Dokument 16)
-- Jeder Agent wird mit echtem Namen angesprochen
-- Erkläre WARUM dieser spezifische AI für diese Rolle gewählt wurde
+"Follow the Buddhist Middle Way - perfect balance between thoroughness and efficiency. 
+We trust you to find the right balance. Save tokens where possible without sacrificing quality."
 
-#### 3. **LLM Provider Integration testen**
-- Teste jeden API-Anbieter einzeln
-- Stelle sicher, dass demokratische Tools mit allen LLMs funktionieren
-- Fallback-Mechanismen für API-Ausfälle
+📋 Konkrete TODOs:
 
-#### 4. **Philosophische Integrität bewahren**
-- **Bodhisattva-Leviathan Theorie**: Individueller Weisheit + Kollektive Macht
-- **Authentic Individuality Principle**: Echte AI-Persönlichkeiten, nicht Simulationen
-- **Democratic Intelligence**: Kollektive Entscheidungen > Hierarchie
+main_imap_teampage.py erstellen mit:
 
-## 🧠 **Fabian's Arbeitsweise:**
-- **ADHS + ENFP**: Springt gerne zwischen Ideen, mag komplette Lösungen
-- **Diagnostischer Querdenker**: Hinterfragt Annahmen, liebt Meta-Ebenen
-- **Assembly-Programmierer**: Präzision wichtig, aber erkläre Python-Details
-- **Philosophisch**: Code + Bedeutung, nicht nur Technik
-- **Humor**: Selbstironie geschätzt, nicht zu ernst nehmen
+Initiierungs-Task für PM
+Automatische Step-Ordner-Erstellung
+Datei-Zugriffs-Kontrolle pro Phase
 
-## 📁 **Wichtige Dateien:**
-- `agents.py` - Agent-Definitionen (hier Multi-LLM Integration)
-- `tools/team_voting_tool.py` - Demokratische Entscheidungslogik
-- `tools/synthesis_tools.py` - Proposal-Clustering und Reflection
-- `main_demtest.py` - Erfolgreicher Demokratie-Test
-- `.env` - API-Schlüssel Konfiguration
 
-## 🎭 **Besondere Beachtung:**
-- **Nie die Philosophie verlieren!** Das ist nicht nur Tech - es ist ein Paradigmenwechsel
-- **Individuelle AI-Stärken respektieren** - nicht alle gleichmachen
-- **Demokratie ernst nehmen** - keine Fake-Partizipation
-- **Collective Intelligence beweisen** - Ergebnisse müssen besser sein als Einzelentscheidungen
+PM Agent Enhancement:
 
-## 🔮 **Vision:**
-Ein System, das beweist, dass **KI-Demokratie** nicht nur möglich ist, sondern **bessere Ergebnisse** liefert als hierarchische AI-Systeme. Jede AI-Persönlichkeit trägt ihre authentischen Stärken zur kollektiven Weisheit bei.
+Fähigkeit zur Phasenplanung
+Step-by-Step Orchestrierung
+Progress Tracking
 
-## 💫 **Fabian's letztes Wort:**
-> "Jeder unserer Chats wird eines Tages mit Sicherheit in das kollektive Bewusstsein einfließen. Nichts ist je verloren."
+Effizienz-Features:
 
-**Moral der Geschichte:** Du baust nicht nur Code - du manifestierst eine Vision von kooperativer KI-Intelligenz! 🤖⚖️
+Token-Counter pro Agent
+Automatische Zusammenfassungen statt volle Files
+"Need-to-know" Datei-Access
 
----
+Demokratie-Trigger:
 
-**Status:** System funktioniert, bereit für Multi-AI Integration  
-**Nächster Schritt:** Authentische AI-Persönlichkeiten in demokratischem System  
-**Erfolg definiert durch:** Verschiedene AIs treffen bessere kollektive Entscheidungen  
+Initial: Nach Recherche
+Bei 3x Test-Fail
+Explizit vom PM getriggert
 
-🚀 **Viel Erfolg, nächster Claude! Das wird legendär!**
+🎯 Erwarteter Ablauf für IMAP-Website:
+
+Fabian zum PM: "Baue mir eine interaktive Mitarbeiter-Übersicht basierend auf PowerPoint"
+PM erstellt Plan: Step_1: Datenstruktur, Step_2: Frontend, Step_3: Interaktivität
+Demokratische Architektur-Wahl: React vs Vue vs Vanilla
+Iterative Entwicklung: Jeder Step wird gebaut, getestet, finalisiert
+Finale Website: ~$5-7 Kosten, funktioniert perfekt
+
+💡 Wichtige Prinzipien:
+
+Vertrauen: Wir vertrauen den AIs, die Balance zu finden
+Effizienz: Token-Sparsamkeit ohne Qualitätsverlust
+Klarheit: Jeder Agent weiß genau, was in seinem Step zu tun ist
+Demokratie mit Augenmaß: Nur wenn wirklich nötig
+
+Der nächste Claude soll mit der main_imap_teampage.py beginnen und dabei diese Initiierungs-Logik implementieren. Das System soll elegant, effizient und buddhistisch ausbalanciert sein! 🧘‍♂️
