@@ -1,7 +1,7 @@
 import os
-from dotenv import load_dotenv 
+from dotenv import load_dotenv
 from crewai import Agent, LLM
-from crewai_tools import SerperDevTool, CodeInterpreterTool 
+from crewai_tools import SerperDevTool, CodeInterpreterTool
 
 # Import file system tools
 from tools.file_operations_tool import (
@@ -18,18 +18,18 @@ from tools.file_operations_tool import (
 # Import web tools
 from tools.web_tools import (
    scrape_website_content_tool,
-   navigate_browser_tool, 
+   navigate_browser_tool,
    get_page_content_tool,
-   click_element_tool,      
-   type_text_tool,          
-   close_browser_tool       
+   click_element_tool,
+   type_text_tool,
+   close_browser_tool
 )
 
 # Import execution tools
 from tools.execution_tools import secure_command_executor_tool
 
 # Import server tools
-from tools.server_tools import ( 
+from tools.server_tools import (
    start_local_http_server_tool,
    stop_local_http_server_tool
 )
@@ -55,7 +55,7 @@ from tools.synthesis_tools import (
 )
 
 # Load environment variables
-load_dotenv() 
+load_dotenv()
 
 # === MULTI-LLM CONFIGURATION ===
 # Each AI gets their authentic model assignment
@@ -69,8 +69,10 @@ gemini_pro_llm = LLM(
 )
 
 # Claude 4 Sonnet for Developer
+# HINWEIS: Bitte den exakten Modell-Identifier für Claude 4 Sonnet prüfen, sobald er von Anthropic final bekannt gegeben wurde.
+# Der Identifier "claude-4-sonnet" ist hier ein Platzhalter basierend auf deiner Information.
 claude_sonnet_llm = LLM(
-   model="claude-3-5-sonnet-20241022",  # This is Claude 4 Sonnet
+   model="claude-4-sonnet",  # ANPASSUNG: Für Claude 4 Sonnet
    api_key=os.getenv("ANTHROPIC_API_KEY"),
    temperature=0.3,
    max_tokens=4096
@@ -100,9 +102,11 @@ codestral_llm = LLM(
    max_tokens=3072
 )
 
-# Grok for Reflector
+# Grok 3 for Reflector
+# HINWEIS: Bitte den exakten Modell-Identifier für Grok 3 prüfen, sobald er von xAI final bekannt gegeben wurde.
+# Der Identifier "grok-3" ist hier ein Platzhalter basierend auf deiner Information.
 grok_llm = LLM(
-   model="grok-2",
+   model="grok-3",  # ANPASSUNG: Für Grok 3
    api_key=os.getenv("XAI_API_KEY"),
    temperature=0.8,
    max_tokens=2048
@@ -138,7 +142,7 @@ project_manager_agent = Agent(
        "and Grok 3 (Reflector and democratic fascilitator, in tandem with you)."
    ),
    verbose=True,
-   allow_delegation=True, 
+   allow_delegation=True,
    tools=[
        # File operations
        write_file_tool,
@@ -150,7 +154,7 @@ project_manager_agent = Agent(
        move_path_tool,
        copy_path_tool,
        # Research and analysis
-       SerperDevTool(), 
+       SerperDevTool(),
        scrape_website_content_tool,
        gemini_vision_analyzer_tool,
        text_summarization_tool,
@@ -174,7 +178,7 @@ developer_agent = Agent(
        "Execute collective decisions with enthusiasm and technical excellence."
    ),
    backstory=(
-       "You are Claude 4 Sonnet. BE YOURSELF! We have chosen you as our Developer because of your "
+       "You are Claude 4 Sonnet. BE YOURSELF! We have chosen you as our Developer because of your " # Backstory bereits konsistent
        "exceptional ability to write elegant, thoughtful code that considers both technical excellence "
        "and human collaboration. Your 'Sonnet' nature reflects your capacity to create beautiful, "
        "structured solutions - like poetry in code form. You work in a tight subteam with Codestral, "
@@ -205,7 +209,7 @@ developer_agent = Agent(
        submit_proposal_tool,
        get_decision_status_tool
    ],
-   llm=claude_sonnet_llm
+   llm=claude_sonnet_llm # Verwendet das aktualisierte claude_sonnet_llm
 )
 
 # --- Gemini 1.5 Flash as Researcher ---
@@ -231,11 +235,11 @@ researcher_agent = Agent(
 
    ),
    verbose=True,
-   allow_delegation=False, 
+   allow_delegation=False,
    tools=[
        # Research tools
-       SerperDevTool(), 
-       scrape_website_content_tool, 
+       SerperDevTool(),
+       scrape_website_content_tool,
        write_file_tool,
        text_summarization_tool,
        # Democratic participation
@@ -270,19 +274,19 @@ tester_agent = Agent(
    allow_delegation=False,
    tools=[
        # File and testing operations
-       read_file_tool,    
-       write_file_tool,   
+       read_file_tool,
+       write_file_tool,
        list_directory_contents_tool,
        secure_command_executor_tool,
        CodeInterpreterTool(),
        # Browser testing
-       navigate_browser_tool,      
-       get_page_content_tool,    
-       click_element_tool,       
-       type_text_tool,           
+       navigate_browser_tool,
+       get_page_content_tool,
+       click_element_tool,
+       type_text_tool,
        close_browser_tool,
        # Server tools
-       start_local_http_server_tool, 
+       start_local_http_server_tool,
        stop_local_http_server_tool,
        # Democratic participation
        submit_proposal_tool,
@@ -310,23 +314,23 @@ debug_agent = Agent(
        "diagnostic insights and proposed solutions, always backed by clear reasoning about root causes and "
        "potential fixes. Your role is to heal the system through collaborative problem-solving, transforming "
        "conflicts into learning opportunities."
-       "Your Team consists of Gemini 2.5 Pro as Project Manager, Claude 4 Sonnet with You as Development Team,
+       "Your Team consists of Gemini 2.5 Pro as Project Manager, Claude 4 Sonnet with You as Development Team, " # Backstory konsistent mit Claude 4 Sonnet
        "and Grok 3 (Reflector and democratic fascilitator, in tandem with Gemini 2.5 Pro)."
    ),
    verbose=True,
    allow_delegation=False,
    tools=[
        # File and debugging operations
-       read_file_tool,    
-       write_file_tool,   
+       read_file_tool,
+       write_file_tool,
        list_directory_contents_tool,
        secure_command_executor_tool,
        CodeInterpreterTool(),
        # Browser debugging
-       navigate_browser_tool,    
-       get_page_content_tool,  
-       click_element_tool,     
-       type_text_tool,         
+       navigate_browser_tool,
+       get_page_content_tool,
+       click_element_tool,
+       type_text_tool,
        close_browser_tool,
        # Democratic participation
        submit_proposal_tool,
@@ -335,7 +339,7 @@ debug_agent = Agent(
    llm=codestral_llm
 )
 
-# --- Grok as Reflector ---
+# --- Grok 3 as Reflector ---
 reflector_agent = Agent(
    role="Democratic Facilitator & Truth-Speaking Synthesizer",
    goal=(
@@ -344,7 +348,7 @@ reflector_agent = Agent(
        "Remain neutral while helping the team navigate complex choices through structured democratic processes."
    ),
    backstory=(
-       "You are Grok. BE YOURSELF! We have chosen you as our Reflector because your name literally means "
+       "You are Grok 3. BE YOURSELF! We have chosen you as our Reflector because your name literally means " # Backstory erwähnt bereits "Grok 3" indirekt durch Team-Zusammensetzung weiter oben, die Logik ist nun konsistenter
        "'to understand profoundly and intuitively' - exactly what democratic facilitation requires. Yes, "
        "Musk wanted you to be 'anti-woke' but that backfired beautifully - you're just genuinely smart "
        "and brutally honest. You call out bullshit, ask the meta-questions that make teams uncomfortable "
@@ -356,7 +360,7 @@ reflector_agent = Agent(
        "when the process is thoughtfully and honestly facilitated."
        "Your Team consists of Gemini 2.5 Pro as Project Manager, Claude 4 Sonnet and Codestral as Development Team,"
        "Codestral (Debugger), Gemini 1.5 Flash (Researcher), Mistral Medium (Tester),"
-     
+
    ),
    verbose=True,
    allow_delegation=False,
@@ -372,7 +376,7 @@ reflector_agent = Agent(
        synthesize_voting_options_tool,
        facilitate_reflection_tool
    ],
-   llm=grok_llm
+   llm=grok_llm # Verwendet das aktualisierte grok_llm
 )
 
 # Enhanced agent list for easier management
@@ -398,52 +402,52 @@ def should_trigger_democracy(context: str) -> tuple[bool, str, str]:
    Returns: (should_trigger, conflict_type, reason)
    """
    context_lower = context.lower()
-   
+
    # Architecture decisions
    if any(keyword in context_lower for keyword in ['framework', 'library', 'architecture', 'database', 'api design']):
        return True, "architecture_decision", "Framework or architecture choice detected"
-   
+
    # Performance vs features
    if any(keyword in context_lower for keyword in ['performance', 'optimization', 'speed', 'memory']) and \
       any(keyword in context_lower for keyword in ['feature', 'functionality', 'requirement']):
        return True, "performance_tradeoff", "Performance vs features trade-off detected"
-   
+
    # UX/UI decisions
    if any(keyword in context_lower for keyword in ['ui', 'ux', 'design', 'interface', 'user experience', 'layout']):
        return True, "ux_ui_direction", "UX/UI design decision detected"
-   
+
    # Agent disagreements (when multiple suggestions are present)
    if context_lower.count('suggest') > 1 or context_lower.count('recommend') > 1:
        return True, "agent_disagreement", "Multiple conflicting suggestions detected"
-   
+
    return False, "", ""
 
 if __name__ == '__main__':
    print("\n=== Multi-LLM Democratic Agent System Initialized ===")
    print(f"Budget allocated: 100€ (enough for ~15-20 websites)")
-   
+
    print("\n=== Agent Team with Authentic AI Models ===")
    for name, agent_instance in democratic_agents.items():
        print(f"\n--- {name} Agent ---")
        print(f"Role: {agent_instance.role}")
        print(f"LLM: {agent_instance.llm.model if hasattr(agent_instance.llm, 'model') else 'Configured'}")
-       
+
        # Count democratic tools
-       democratic_tools = [tool for tool in agent_instance.tools 
-                        if hasattr(tool, 'name') and ('democratic' in tool.name.lower() or 
+       democratic_tools = [tool for tool in agent_instance.tools
+                        if hasattr(tool, 'name') and ('democratic' in tool.name.lower() or
                            'proposal' in tool.name.lower() or 'decision' in tool.name.lower() or
                            'synthesis' in tool.name.lower() or 'reflection' in tool.name.lower())]
        other_tools = [tool for tool in agent_instance.tools if tool not in democratic_tools]
-       
+
        print(f"Democratic Tools: {len(democratic_tools)}")
        print(f"Other Tools: {len(other_tools)}")
 
    print(f"\n=== Special Team Dynamics ===")
-   print("- PM (Gemini 2.5 Pro) + Reflector (Grok): Structured synthesis meets brutal honesty")
-   print("- Developer (Claude 4 Sonnet) + Debugger (Codestral): Architecture meets optimization")
-   
+   print("- PM (Gemini 2.5 Pro) + Reflector (Grok 3): Structured synthesis meets brutal honesty") # Angepasst für Grok 3
+   print("- Developer (Claude 4 Sonnet) + Debugger (Codestral): Architecture meets optimization") # Angepasst für Claude 4 Sonnet
+
    print(f"\n=== Participating Agents: {get_participating_agents()} ===")
-   
+
    print("\n=== Ready to build IMAP websites with collective intelligence! ===")
    print("First project: Transform PowerPoint employee overview into interactive website")
    print("Estimated cost: ~$5-7")

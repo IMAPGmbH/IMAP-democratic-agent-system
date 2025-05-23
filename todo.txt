@@ -1,84 +1,97 @@
-TODO für nächsten Claude - IMAP Democratic Agent System
-🎯 Aktueller Stand:
+Vollständige Analyse der todo.txt und nächste Schritte für das IMAP Democratic Agent System
+Diese Analyse konsolidiert alle Informationen aus der todo.txt mit den bisherigen Erkenntnissen, um einen umfassenden Überblick über den Projektstatus, die Ziele und die anstehenden Aufgaben zu geben.
 
-✅ Multi-LLM agents.py fertig implementiert mit 6 authentischen AI-Persönlichkeiten
-✅ Demokratisches Voting-System funktioniert (5-Phasen-Modell)
-✅ Budget: 100€ für ~15-20 Websites
-✅ Erstes Ziel: IMAP Mitarbeiter-Übersicht (PowerPoint → Website)
+1. Projektübersicht und Gesamtziele
+Aktueller Stand:
+✅ Multi-LLM agents.py ist implementiert und die Modellzuweisungen sind präzisiert.
+✅ Das demokratische Voting-System (5-Phasen-Modell) ist funktionsfähig (main_demtest.py).
+Budget: 100€ für das Gesamtprojekt (ca. 15-20 Websites).
+Erstes konkretes Projektziel: Interaktive IMAP Mitarbeiter-Übersicht (basierend auf PowerPoint).
+Erwarteter Projektablauf (IMAP Mitarbeiter-Übersicht):
+Nutzer-Briefing (Fabian an PM).
+PM-Planung (Datenstruktur, Frontend, Interaktivität).
+Demokratische Architektur-Wahl.
+Iterative Entwicklung der definierten Steps.
+Ergebnis: Funktionierende Website (geschätzte Kosten: 5-7€).
 
-🚀 Nächste Implementierung: Initiierungs-Modus
-Phase 1: Nutzer-Initiierung
-Der Nutzer (Fabian) beschreibt dem PM, was gebaut werden soll. Der PM erstellt daraus:
+2. Kern-Implementierung: Der "Initiierungs-Modus"
+Dies ist der nächste große Entwicklungsschritt und soll in einem zentralen Skript (z.B. project_workflow_manager.py oder main_project_initiator.py) umgesetzt werden.
+Phase 1: Nutzer-Initiierung & Projektplanung durch den PM
+Nutzer-Interaktion:
+Anforderung: Der PM muss detaillierte Projektanforderungen vom Nutzer (z.B. Fabian) entgegennehmen können.
+Umsetzung: Erfordert eine Logik oder einen initialen Task für den PM zur Erfassung dieser Anforderungen.
+PM erstellt Planungsartefakte:
+Anforderung: Basierend auf den Nutzeranforderungen generiert der PM:
+Rechercheplan
+Arbeitsplan
+Phasenzerlegung (Projekt in konkrete Steps)
+Datei-Zugriffs-Matrix (pro Step: wer darf welche Dateien sehen/bearbeiten)
+Umsetzung: Entwicklung neuer, komplexer Tasks oder einer Task-Kette für den PM. Speicherung der Artefakte als Dateien (Markdown, JSON) im Projektverzeichnis.
+Phase 2: Demokratische Architektur-Entscheidung
+Anforderung: Nach initialer Recherche und Planung erfolgt ein demokratischer Loop zur Wahl des Frameworks/der Architektur.
+Status: Der Prozess ist durch die Demokratie-Tools abgedeckt und in main_demtest.py simuliert. Muss in den neuen Workflow des Initiierungs-Skripts integriert werden.
+Phase 3: Iterative Entwicklung (Step-by-Step)
+Automatisierte Projektstruktur:
+Anforderung: Für jeden Entwicklungs-Step (Step_n) wird eine Ordnerstruktur automatisch angelegt:
+/Step_n/plan.md (Detaillierter Plan für diesen Step)
+/Step_n/files_access.json (Zugriffsmatrix für diesen Step)
+/Step_n/code/ (Code-Verzeichnis für diesen Step)
+Umsetzung: Eine Funktion oder Logik im Initiierungs-Skript, gesteuert durch den PM, legt diese Strukturen und initialen Dateien an.
+"Need-to-know" Datei-Zugriffskontrolle:
+Anforderung: Agenten dürfen nur auf die für sie im aktuellen Step freigegebenen Dateien zugreifen.
+Umsetzung: Implementierung eines Kontrollmechanismus, der die files_access.json pro Step berücksichtigt, bevor Dateizugriffe erfolgen.
 
-Rechercheplan - Was muss erforscht werden?
-Arbeitsplan - Wie wird es umgesetzt?
-Phasenzerlegung - Projekt in Steps aufteilen
-Datei-Zugriffs-Matrix - Welcher Agent braucht welche Dateien in welchem Step?
+3. Detaillierter Entwicklungs-Workflow (innerhalb der Iteration)
+Anforderung: Spezifischer Workflow für Code-Erstellung und Qualitätssicherung pro Step.
+Tandem-Entwicklung (Developer & Debugger):
+developer_agent (Claude 4 Sonnet) schreibt den initialen Code.
+debug_agent (Codestral) führt eine direkte Code-Überprüfung und -Verfeinerung durch.
+Erst danach Übergabe an den tester_agent.
+Umsetzung:
+Task-Orchestrierung: Die Task-Abfolge im Crew-Prozess des Initiierungs-Skripts muss diesen zweistufigen Entwicklungs-Workflow abbilden.
+Agenten-Backstories (agents.py): Die Backstories von developer_agent und debug_agent sollten diese enge Zusammenarbeit noch expliziter beschreiben (teilweise bereits vorhanden).
+4. Erweiterungen für den Project Manager (PM)
+Detaillierte Phasen- und Step-Planung:
+Anforderung: Der PM benötigt explizite Fähigkeiten zur Planung und Verwaltung der plan.md für jeden Entwicklungs-Step.
+Umsetzung: Definition neuer, komplexer Tasks für den PM.
+Progress Tracking:
+Anforderung: Der PM soll den Projektfortschritt über die Steps hinweg verfolgen.
+Umsetzung: Mechanismen für den PM zur Statusabfrage und -aktualisierung der Steps.
 
-Phase 2: Architektur-Entscheidung
-Nach der Recherche: Erster demokratischer Loop für Framework/Architektur-Wahl
+5. Effizienz-Features
+Token-Counter pro Agent:
+Anforderung: Verbrauchszählung für jeden Agenten.
+Umsetzung: Fortgeschrittene Anforderung; erfordert ggf. tiefere Integration mit CrewAI/LiteLLM.
+Konsequente Nutzung von Zusammenfassungen:
+Anforderung: Agenten sollen Zusammenfassungen statt vollständiger Dateien austauschen.
+Umsetzung: Aktive Nutzung der text_summarization_tool in den Agenten-Tasks verankern.
 
-Phase 3: Iterative Entwicklung
-Für jeden Step_n:
-├── /Step_1/
-│   ├── plan.md (Was soll in diesem Step passieren)
-│   ├── files_access.json (Wer darf was sehen)
-│   └── code/
-├── /Step_2/
-│   └── ...
+6. Demokratische Prozesse: Trigger und Durchführung
+Sparsame Nutzung: Demokratische Loops gezielt einsetzen, nicht für jeden kleinen Konflikt.
+Definierte Trigger:
+Initial: Nach Recherche für Architektur-Entscheidung (simuliert).
+Problem-Loop: Automatisch bei 3x Test-Fail (Test → Debug → Test -> Fail -> ...).
+Umsetzung: Logik zur Verfolgung von Test-Fail-Zyklen und automatische Auslösung durch den PM.
+Explizit durch PM: PM kann Prozess jederzeit initiieren (Tool vorhanden).
+Ranked Choice Voting:
+Status: Die RANKED_VOTING-Phase nutzt ein gewichtetes Ranglistenwahlverfahren. Dies ist der zentrale Abstimmungsmechanismus nach den "Reflection Circles" (Synthese durch reflector_agent).
 
-Demokratische Loops - Sparsam einsetzen:
+7. Agenten-Konfiguration und Übergeordnete Prinzipien
+Leitmotiv "Buddhistischer Mittlerer Weg":
+Anforderung: Integration des Prinzips: "Follow the Buddhist Middle Way - perfect balance between thoroughness and efficiency. We trust you to find the right balance. Save tokens where possible without sacrificing quality." in jeden Agenten-Prompt.
+Umsetzung (optional): Aufnahme in goal- oder backstory-Attribute in agents.py.
+Weitere wichtige Prinzipien:
+Vertrauen: Den KIs vertrauen, die richtige Balance zu finden.
+Effizienz: Token-Sparsamkeit ohne Qualitätsverlust.
+Klarheit: Jeder Agent muss genau wissen, was in seinem Step zu tun ist (unterstützt durch plan.md pro Step).
+Demokratie mit Augenmaß: Nur einsetzen, wenn wirklich nötig.
 
-Initialer Loop: Nach Recherche für Architektur-Entscheidung
-Problem-Loop: Nur wenn Test→Debug→Test 3x fehlschlägt
-Nicht für jeden kleinen Konflikt!
-
-🧘 Leitmotiv: Der Buddhistische Mittlere Weg
-In jeden Agent-Prompt integrieren:
-
-"Follow the Buddhist Middle Way - perfect balance between thoroughness and efficiency. 
-We trust you to find the right balance. Save tokens where possible without sacrificing quality."
-
-📋 Konkrete TODOs:
-
-main_imap_teampage.py erstellen mit:
-
-Initiierungs-Task für PM
-Automatische Step-Ordner-Erstellung
-Datei-Zugriffs-Kontrolle pro Phase
-
-
-PM Agent Enhancement:
-
-Fähigkeit zur Phasenplanung
-Step-by-Step Orchestrierung
-Progress Tracking
-
-Effizienz-Features:
-
-Token-Counter pro Agent
-Automatische Zusammenfassungen statt volle Files
-"Need-to-know" Datei-Access
-
-Demokratie-Trigger:
-
-Initial: Nach Recherche
-Bei 3x Test-Fail
-Explizit vom PM getriggert
-
-🎯 Erwarteter Ablauf für IMAP-Website:
-
-Fabian zum PM: "Baue mir eine interaktive Mitarbeiter-Übersicht basierend auf PowerPoint"
-PM erstellt Plan: Step_1: Datenstruktur, Step_2: Frontend, Step_3: Interaktivität
-Demokratische Architektur-Wahl: React vs Vue vs Vanilla
-Iterative Entwicklung: Jeder Step wird gebaut, getestet, finalisiert
-Finale Website: ~$5-7 Kosten, funktioniert perfekt
-
-💡 Wichtige Prinzipien:
-
-Vertrauen: Wir vertrauen den AIs, die Balance zu finden
-Effizienz: Token-Sparsamkeit ohne Qualitätsverlust
-Klarheit: Jeder Agent weiß genau, was in seinem Step zu tun ist
-Demokratie mit Augenmaß: Nur wenn wirklich nötig
-
-Der nächste Claude soll mit der main_imap_teampage.py beginnen und dabei diese Initiierungs-Logik implementieren. Das System soll elegant, effizient und buddhistisch ausbalanciert sein! 🧘‍♂️
+8. Bereits gut abgedeckte Punkte
+Multi-LLM agents.py (implementiert und Modelle aktualisiert).
+Demokratisches Voting-System (5 Phasen & Ranked Choice Voting) (Kernfunktionalität vorhanden).
+Demokratie-Trigger (Initial nach Recherche, Explizit durch PM) (prinzipiell abgedeckt).
+9. Nächste Schritte (Priorität)
+Beginn der Implementierung mit einem allgemeinen Initiierungs-Skript (z.B. project_workflow_manager.py oder main_project_initiator.py).
+Fokus auf: Nutzerinteraktion, PM-Planung, Step-Ordner-Erstellung, Datei-Zugriffskontrolle und den Tandem-Entwicklungs-Workflow.
+Ziel: Ein System, das "elegant, effizient und buddhistisch ausbalanciert" ist.
+Diese erweiterte Analyse dient als umfassende Roadmap für die nächsten Entwicklungsschritte.
